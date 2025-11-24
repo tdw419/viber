@@ -1,0 +1,6 @@
+lancedb
+pandas
+pyarrow
+sentence-transformers
+torch
+transformers

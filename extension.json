@@ -1,0 +1,49 @@
+
+{
+  "name": "mcp-server-extension",
+  "version": "0.1.0",
+  "description": "A Gemini CLI extension that provides a simple MCP server and a RAG system.",
+  "main_module": "extension",
+  "commands": [
+    {
+      "name": "mcp.server",
+      "description": "Starts the MCP server.",
+      "entry_point": "mcp_server"
+    },
+    {
+      "name": "mcp.rag.init_db",
+      "description": "Initializes the RAG database.",
+      "entry_point": "rag_init_db"
+    },
+    {
+      "name": "mcp.rag",
+      "description": "Interacts with the RAG system.",
+      "entry_point": "rag"
+    },
+    {
+      "name": "mcp.agent.start",
+      "description": "Starts the AI agent.",
+      "entry_point": "start_agent"
+    },
+    {
+      "name": "mcp.general_agent.start",
+      "description": "Starts the general AI agent.",
+      "entry_point": "start_general_agent"
+    },
+    {
+      "name": "mcp.spec.new_programmatic",
+      "description": "Creates a new feature specification programmatically.",
+      "entry_point": "mcp_spec_new"
+    },
+    {
+      "name": "mcp.general_agent.find_gemini_cli",
+      "description": "Finds the gemini-cli executable path.",
+      "entry_point": "mcp_find_gemini_cli"
+    },
+    {
+      "name": "mcp.rag.init_conversations_db",
+      "description": "Initializes the LanceDB conversations database.",
+      "entry_point": "rag_init_conversations_db"
+    }
+  ]
+}

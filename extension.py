@@ -1,13 +1,14 @@
 
 import subprocess
 import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'projects/003-llm-os-gui')))
 import pandas as pd
 import pyarrow as pa
 import general_agent
 import lm_studio_agent
-from rag_system import db
-from rag_system import config
-from flask import Flask, request, jsonify
+from projects.llm_os_core import db
+from projects.llm_os_core import config
 
 def run_command(command):
     """Runs a command and returns the output."""

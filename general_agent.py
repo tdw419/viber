@@ -267,12 +267,45 @@ def generate_spec_content(description, spec_template):
     return filled_spec
 
 
+def handle_project_command(project_command):
+    """
+    Handles the project commands.
+    """
+    parts = project_command.split(" ", 1)
+    command = parts[0].lower()
+
+    if command == "new":
+        if len(parts) > 1:
+            from projects.llm_os_core import project_service
+            project_service.create_project(parts[1])
+        else:
+            print("General Agent: Please provide a project name.")
+    else:
+        print("General Agent: Unknown project command. Available commands: new <name>")
+
+def handle_roadmap_command(roadmap_command):
+    """
+    Handles the roadmap commands.
+    """
+    parts = roadmap_command.split(" ", 1)
+    command = parts[0].lower()
+
+    if command == "add":
+        if len(parts) > 1:
+            with open("roadmap.md", "a") as f:
+                f.write(f"\n- [ ] {parts[1]}")
+            print(f"Added '{parts[1]}' to the roadmap.")
+        else:
+            print("General Agent: Please provide an idea to add to the roadmap.")
+    else:
+        print("General Agent: Unknown roadmap command. Available commands: add <idea>")
+
 def main():
     """
     The main loop for the general AI agent.
     """
     print("General Agent: Hello! I'm ready to manage the project.")
-    print("Available commands: list_files, run_tests, status, spec, find_gemini_cli, help, exit")
+    print("Available commands: list_files, run_tests, status, spec, project, roadmap, find_gemini_cli, help, exit")
 
     while True:
         try:
@@ -287,7 +320,7 @@ def main():
                 print("General Agent: Goodbye!")
                 break
             elif command == "help":
-                print("Available commands: list_files, run_tests, status, spec, find_gemini_cli, help, exit")
+                print("Available commands: list_files, run_tests, status, spec, project, roadmap, find_gemini_cli, help, exit")
             elif command == "list_files":
                 list_files()
             elif command == "run_tests":
@@ -301,6 +334,16 @@ def main():
                     handle_spec_command(parts[1])
                 else:
                     print("General Agent: Please provide a spec command. Available commands: new <description>")
+            elif command == "project":
+                if len(parts) > 1:
+                    handle_project_command(parts[1])
+                else:
+                    print("General Agent: Please provide a project command. Available commands: new <name>")
+            elif command == "roadmap":
+                if len(parts) > 1:
+                    handle_roadmap_command(parts[1])
+                else:
+                    print("General Agent: Please provide a roadmap command. Available commands: add <idea>")
             else:
                 print("General Agent: Unknown command. Type 'help' for a list of commands.")
         except (EOFError, KeyboardInterrupt):

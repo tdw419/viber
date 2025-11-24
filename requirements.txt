@@ -4,3 +4,4 @@ pyarrow
 sentence-transformers
 torch
 transformers
+PyQt5
